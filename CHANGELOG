@@ -1,0 +1,15 @@
+1.2.1
+--------------------------------------------------------------------------------
+[Change] Changed the name and identifier from 'router' to 'lfischer_router' to meet synetics development partner requirements
+
+1.2.0
+--------------------------------------------------------------------------------
+[Improvement] New route to open objects via their inventory number `/open-inventory/<inventory no>`
+
+1.1.0
+--------------------------------------------------------------------------------
+[Improvement] New route to change the tenant via URL `/change-tenant/<tenant-id>`
+
+1.0.0
+--------------------------------------------------------------------------------
+[Change] Initial release!! New route to open objects via their title `/open-object/<object title>`.

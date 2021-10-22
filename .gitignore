@@ -1,0 +1,5 @@
+# Ignore all PHP Storm meta files
+.idea
+
+# Ignore all created add-on packages
+*.zip

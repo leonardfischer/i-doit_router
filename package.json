@@ -1,0 +1,36 @@
+{
+  "name": "LC__MODULE__LFISCHER_ROUTER",
+  "title": "Router",
+  "identifier": "lfischer_router",
+  "author": "Leonard Fischer",
+  "version": "1.3",
+  "description": "This Add-on will provide some additional URL routes.",
+  "type": "addon",
+  "files": [
+    "init.php",
+    "LICENSE",
+    "CHANGELOG",
+    "isys_module_lfischer_router.class.php",
+    "README.md",
+    "lang/en.inc.php",
+    "lang/de.inc.php",
+    "lang",
+    "package.json",
+    "VERSION",
+    "src/Controller/Route.php",
+    "src/Controller",
+    "src"
+  ],
+  "sql-tables": [],
+  "requirements": {
+    "core": ">= 1.16"
+  },
+  "dependencies": {
+    "php": [
+      "mysqli"
+    ],
+    "apache": [
+      "mod_rewrite"
+    ]
+  }
+}
