@@ -1,3 +1,8 @@
+1.3
+--------------------------------------------------------------------------------
+[Improvement] Added route open objects via their primary IP-address (both IPv4 and IPv6) `/open-object-by-ip/<ip address>`
+[Change]      Moved the repository from bitbucket to github
+
 1.2.1
 --------------------------------------------------------------------------------
 [Change] Changed the name and identifier from 'router' to 'lfischer_router' to meet synetics development partner requirements
