@@ -2,7 +2,6 @@
 
 namespace idoit\Module\Lfischerrouter\Controller;
 
-use Exception;
 use idoit\Component\Helper\Ip;
 use idoit\Controller\Base;
 use isys_application;
@@ -14,7 +13,7 @@ use isys_register;
  *
  * @package idoit\Module\Lfischerrouter\Controller
  */
-class Route extends Base
+class OpenObject extends Base
 {
     /**
      * Method to redirect to a object, using it's name.
@@ -23,7 +22,7 @@ class Route extends Base
      *
      * @throws \isys_exception_database
      */
-    public function openObject(isys_register $request)
+    public function byName(isys_register $request)
     {
         $dao = $this->getDi()->get('cmdb_dao');
         $objectTitle = $request->get('name');
@@ -42,8 +41,7 @@ class Route extends Base
                 AND isys_obj__status = {$statusNormal}
                 LIMIT 1;";
 
-            $objectId = $dao->retrieve($sql)
-                ->get_row_value('id');
+            $objectId = $dao->retrieve($sql)->get_row_value('id');
 
             if ($objectId) {
                 header('Location: ' . isys_application::instance()->www_path . 'index.php?' . C__CMDB__GET__OBJECT . '=' . $objectId);
@@ -60,7 +58,7 @@ class Route extends Base
      *
      * @throws \isys_exception_database
      */
-    public function openObjectByIp(isys_register $request)
+    public function byIpAddress(isys_register $request)
     {
         $ipAddress = trim($request->get('ip'));
 
@@ -145,7 +143,7 @@ class Route extends Base
      *
      * @throws \isys_exception_database
      */
-    public function openObjectByInventory(isys_register $request)
+    public function byInventoryNumber(isys_register $request)
     {
         $dao = $this->getDi()->get('cmdb_dao');
         $inventoryNumber = $request->get('inventory');
@@ -166,56 +164,11 @@ class Route extends Base
                 AND isys_obj__status = {$statusNormal}
                 LIMIT 1;";
 
-            $objectId = $dao->retrieve($sql)
-                ->get_row_value('id');
+            $objectId = $dao->retrieve($sql)->get_row_value('id');
 
             if ($objectId) {
                 header('Location: ' . isys_application::instance()->www_path . 'index.php?' . C__CMDB__GET__OBJECT . '=' . $objectId);
                 die;
-            }
-        }
-
-        header('Location: ' . isys_application::instance()->www_path);
-        die;
-    }
-
-    /**
-     * Method to change the tenant.
-     *
-     * @param isys_register $request
-     */
-    public function changeTenant(isys_register $request)
-    {
-        $tenantId = $request->get('id');
-        $parameters = (array)$request->get('GET');
-
-        try {
-            $session = isys_application::instance()->container->get('session');
-        } catch (Exception $e) {
-            global $g_comp_session;
-
-            $session = $g_comp_session;
-        }
-
-        if ($tenantId && $session->is_logged_in()) {
-            try {
-                $location = '';
-                $session->change_mandator($tenantId);
-
-                // If the "open-object" parameter is supplied, redirect to the "open-object/xyz" page.
-                if (isset($parameters['open-object']) && !empty($parameters['open-object'])) {
-                    $location = 'open-object/' . $parameters['open-object'];
-                }
-
-                // If the "open-object" parameter is supplied, redirect to the "open-object/xyz" page.
-                if (isset($parameters['open-object-id']) && is_numeric($parameters['open-object-id'])) {
-                    $location = 'index.php?' . C__CMDB__GET__OBJECT . '=' . $parameters['open-object-id'];
-                }
-
-                header('Location: ' . isys_application::instance()->www_path . $location);
-                die;
-            } catch (Exception $e) {
-                // Nothing to do here.
             }
         }
 

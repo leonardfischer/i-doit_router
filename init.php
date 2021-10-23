@@ -7,8 +7,8 @@ if (isys_module_manager::instance()->is_active('lfischer_router')) {
 
     // Register a route.
     isys_request_controller::instance()
-        ->addModuleRoute('GET', '/open-object/[**:name]', 'lfischer_router', 'Route', 'openObject')
-        ->addModuleRoute('GET', '/open-object-by-ip/[**:ip]', 'lfischer_router', 'Route', 'openObjectByIp')
-        ->addModuleRoute('GET', '/open-inventory/[**:inventory]', 'lfischer_router', 'Route', 'openObjectByInventory')
-        ->addModuleRoute('GET', '/change-tenant/[i:id]', 'lfischer_router', 'Route', 'changeTenant');
+        ->addModuleRoute('GET', '/open-object/[**:name]', 'lfischer_router', 'OpenObject', 'byName')
+        ->addModuleRoute('GET', '/open-object-by-ip/[**:ip]', 'lfischer_router', 'OpenObject', 'byIpAddress')
+        ->addModuleRoute('GET', '/open-inventory/[**:inventory]', 'lfischer_router', 'OpenObject', 'byInventoryNumber')
+        ->addModuleRoute('GET', '/change-tenant/[i:id]', 'lfischer_router', 'ChangeTenant', 'byTenantId');
 }
